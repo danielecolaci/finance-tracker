@@ -57,10 +57,12 @@ const { pending, refresh, transactions: {
         byDate
     }
 } } = useFetchTransactions(current)
+await refresh()
+
 const { refresh: refreshPrevious, transactions: {
     incomeTotal: prevIncomeTotal,
     expenseTotal: prevExpenseTotal,
 } } = useFetchTransactions(previous)
 
-await Promise.all([refresh(), refreshPrevious()])
+await refreshPrevious()
 </script>
